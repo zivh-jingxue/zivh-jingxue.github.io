@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+</head>
+<body>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-app.js";
+    import { getDatabase,ref,set,child, get } from "https://www.gstatic.com/firebasejs/9.9.1/firebase-database.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAdHHsRkyP31jttTXEnSuTM4uYIudL1BTU",
+      authDomain: "data-test-6a133.firebaseapp.com",
+      databaseURL: "https://data-test-6a133-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "data-test-6a133",
+      storageBucket: "data-test-6a133.appspot.com",
+      messagingSenderId: "1059185131862",
+      appId: "1:1059185131862:web:fdef9c0354d402e67616f7",
+      measurementId: "G-L564FE5HGW"
+    };
+    const app = initializeApp(firebaseConfig);
+    
+    const database = getDatabase(app);
+
+    function writeUserData(userId, name, email, imageUrl) {
+      const db = getDatabase();
+      set(ref(db, 'users/' + userId), {
+        username: name,
+        email: email,
+        profile_picture : imageUrl
+      });
+    }
+    const dbRef = ref(getDatabase());
+    get(child(dbRef, `users/`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log(snapshot.val());
+      } else {
+      console.log("No data available");
+      }
+      }).catch((error) => {
+        console.error(error);
+      });
+  </script>
+
+  </body>
+</body>
+
+</html>

@@ -1,0 +1,153 @@
+:root {
+    --main-navbar-background-color:#e7e1cd;
+    --offcanvas-width: 250px;
+    --add-btn-color: #858FAC;
+    --input-label-color: #CECAC1;
+    --main-background-color: #EEEADF;
+    --input-background-color: #fbf9f9;
+    --postive-btn-color: #83978C;
+    --negative-btn-color: #C5C4BC;
+    --sus-alert-color: #A46B4F;
+    --card-body-clor: #a7be9e;
+    --card-list-color: rgba(255, 255, 255, 0.421);
+    --badge-color: #B1764C;
+    --seperate-line: 2px #DFDCD7 solid;
+
+}
+
+.navbar {
+    background-color: var(--main-navbar-background-color)!important;
+}
+
+.navbar-brand {
+    font-weight: 600;
+    font-size: 1.5rem;
+    letter-spacing: 1.1rem;
+}
+
+.offcanvas-end {
+    width: var(--offcanvas-width);
+}
+
+.offcanvas-header {
+    background-color: var(--main-navbar-background-color)!important;
+}
+
+.offcanvas-body {
+    letter-spacing: .3rem;
+    font-size: 1.1rem;
+}
+
+.add-btn {
+    z-index: 1000;
+    position:absolute; 
+    right:.5rem; 
+    bottom:.5rem;
+    border-radius: 35px;
+    background-color: var(--add-btn-color);
+    color: white;
+    font-size: 43px;
+    font-weight: bold;
+    width: 70px;
+    height: 70px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    filter: brightness(90%);
+}
+
+.input-group-text {
+    background-color: var(--input-label-color)!important;
+}
+
+.modal-header, .modal-footer {
+    background-color: var(--main-navbar-background-color)!important;
+}
+
+.modal-body {
+    background-color: var(--main-background-color)!important;
+}
+
+.form-control, .form-select {
+    background-color: var(--input-background-color)!important;
+}
+
+.modal-title {
+    letter-spacing: .1rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+body {
+    background-color: var(--main-background-color);
+}
+
+.btn-postive {
+    background-color:var(--postive-btn-color)!important;
+    color: white!important;
+}
+
+.btn-negative {
+    background-color:var(--negative-btn-color)!important;
+}
+
+.btn-postive:hover ,.btn-negative:hover {
+    filter: brightness(90%);
+}
+
+#modal-sus {
+    display: none;
+}
+
+.spinner-border {
+    width: 1rem!important;
+    height: 1rem!important;
+    border: .15em solid currentColor !important;
+    border-radius: 0px!important;
+}
+
+.alert-success {
+    background-color: var(--input-label-color)!important;
+    border: 0px;
+}
+
+.text-success {
+    color: var(--sus-alert-color)!important;
+}
+
+.custom-container {
+    margin-top: 5rem!important;
+}
+
+.card-body {
+    background-color: var(--card-body-clor)!important;
+    color: white;
+}
+
+.list-group-item {
+    background-color: var(--card-list-color)!important;
+}
+
+.badge {
+    z-index: 999!important;
+}
+
+.bg-badge {
+    background-color: var(--badge-color)!important;
+}
+
+#resultRow {
+    border-top:  var(--seperate-line);
+
+}
+
+#additional-row {
+    border-bottom: var(--seperate-line);
+}
+
+#total-salary,#total-hours {
+    letter-spacing: 1px;
+    font-size: 1.3rem;
+}

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>班表</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <link href="css/emp.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <script src="js/fuc.js"></script>
+    </head>
+<body>
+    <nav class="navbar navbar-light fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="assets/logo.png" alt="" width="50" height="50" class="d-inline-block align-text-center">
+                班表
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasNavbarLabel">功能選單</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="#">員工資料</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">薪資計算</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid custom-container">
+        <div class="row" id="search-bar">
+            <!-- 年 -->
+            <div class="col-2">
+                <div class="input-group mb-3">
+                    <span class="input-group-text">年</span>
+                    <input type="text" class="form-control" 
+                    id="year" placeholder="西元" aria-label="Username" aria-describedby="year">
+                </div>
+            </div>
+            <!-- 月份選單 -->
+            <div class="col-2">
+                <div class="input-group mb-3">
+                    <label class="input-group-text" for="month">月</label>
+                    <select class="form-select" id="month">
+                        <option selected>月份</option>
+                        <option value="1">1月</option>
+                        <option value="2">2月</option>
+                        <option value="3">3月</option>
+                        <option value="4">4月</option>
+                        <option value="5">5月</option>
+                        <option value="6">6月</option>
+                        <option value="7">7月</option>
+                        <option value="8">8月</option>
+                        <option value="9">9月</option>
+                        <option value="10">10月</option>
+                        <option value="11">11月</option>
+                        <option value="12">12月</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-2">
+                <button type="button" class="btn btn-postive" id="search">查詢</button>
+            </div>
+        </div>
+        <div id="main-content">
+            <div class="row mb-3" id="additional-row">
+                <div class="col-2">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">本薪</span>
+                        <input type="text" class="form-control" placeholder="$" aria-label="Username" id="basic-salary"  aria-describedby="basic-salary">
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">時薪</span>
+                        <input type="text" class="form-control" placeholder="$" aria-label="Username" id="hour-salary" aria-describedby="hour-salary">
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">勞保</span>
+                        <input type="text" class="form-control" id="labor-insurance" placeholder="$" aria-label="Username" aria-describedby="labor-insurance">
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">健保</span>
+                        <input type="text" class="form-control" id="health-insurance" placeholder="$" aria-label="Username" aria-describedby="health-insurance">
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">餐費</span>
+                        <input type="text" class="form-control" id="meal-allowance" placeholder="$" aria-label="Username" aria-describedby="meal-allowance" readonly="true">
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">其他</span>
+                        <input type="text" class="form-control" id="other-allowance" placeholder="$" aria-label="Username" aria-describedby="other-allowance">
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="day-form" data-existresult="false"></div>
+        </div>
+        
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script>
+        let date = new Date();
+        date.setMonth(date.getMonth()-1);
+        const lastMonth = date.getMonth()+1;
+        const yearOfLastMonth = date.getFullYear();
+        $('#year').val(yearOfLastMonth);
+        $('#month').val(lastMonth);
+        const amountOfDays = getHowManyDays(yearOfLastMonth,lastMonth);
+        $('#day-form').html(generateDaysInput(amountOfDays));
+
+        $(document).on('keypress',function(e) {
+            if(e.which == 13) {
+                var currentFocusId = document.activeElement.id;
+                var currentFocus = $('#'+currentFocusId);
+                var value = currentFocus.val();
+                currentFocus.data('value',value);
+                var string = formatAndGetHours(value).formatedString;
+                var hours = formatAndGetHours(value).hours;
+                currentFocus.val(string);
+
+                let badgeHtml = '';//badge
+                if (getOTHours(hours).overtimeRange1 != 0) {
+                    let text = getOTHours(hours).overtimeRange2 == 0 ? getOTHours(hours).overtimeRange1 : (getOTHours(hours).overtimeRange1 + '/' + getOTHours(hours).overtimeRange2);
+                    badgeHtml = '<span class="position-absolute top-0 start-100 translate-middle badge bg-badge rounded-pill" id="health-insurance-badge">' + text +'</span>';
+                }
+                currentFocus.next().html(hours + badgeHtml);
+                
+                let currentMealAllowance = $('#meal-allowance').val() == '' ? 0 : parseInt($('#meal-allowance').val());
+                $('#meal-allowance').val(currentMealAllowance + getMealAllowance(hours));
+                $('#'+(parseInt(currentFocusId)+1)).focus();
+            }
+        });
+        //計算按鈕事件
+        $('#day-form div #calculate').on('click',function(){
+            var totalHours = calculateTotalHours();
+            let resultRowHtml = '<div class="row ml-3" id="resultRow"><div class="col-2"><div class="input-group my-3"><span class="input-group-text">總時數</span><input type="text" class="form-control" id="total-hours" placeholder="$" aria-label="Username" aria-describedby="total-hours" readonly="true"></div></div><div class="col-4"><div class="input-group my-3"><span class="input-group-text">本月總薪資</span><input type="text" class="form-control" id="total-salary" placeholder="$" aria-label="Username" aria-describedby="total-salary" readonly="true"></div></div></div>';
+            let isResultExist = $('#day-form').data('existresult');
+            let hoursSalary = $('#hour-salary').val();
+            let laborInsurance = parseInt($('#labor-insurance').val()) ? parseInt($('#labor-insurance').val()) : 0;
+            let healthInsurance = parseInt($('#health-insurance').val()) ? parseInt($('#health-insurance').val()) : 0;
+            let mealAllowance = parseInt($('#meal-allowance').val()) ? parseInt($('#meal-allowance').val()) : 0;
+            let otherAllowance = parseInt($('#other-allowance').val()) ? parseInt($('#other-allowance').val()) : 0;
+            console.log(laborInsurance+','+healthInsurance+','+mealAllowance+','+otherAllowance);
+            if (!isResultExist) {
+                $('#day-form').append(resultRowHtml);
+                $('#day-form').data('existresult',true);
+            }
+            let totalSalary = Math.round((hoursSalary * totalHours)) - (laborInsurance + healthInsurance) + (mealAllowance + otherAllowance);
+            totalSalary = totalSalary ? totalSalary : '工作時間未填寫，請確認！';
+            $('#total-hours').val(totalHours);
+            $('#total-salary').val(totalSalary);
+        });
+
+        //查詢按鈕事件
+        $('#search-bar div #search').on('click',function(){
+            var year = $('#year').val();
+            var month = $('#month').val();
+            var amountOfDays = getHowManyDays(year,month);
+            $('#day-form').html('');
+            $('#day-form').html(generateDaysInput(amountOfDays));
+        });
+
+        //本薪輸入事件
+        $('#basic-salary').keyup(function () {
+            const hoursOfAMonth = 175; //每個月必要時數
+            $('#hour-salary').val(Math.floor($(this).val()/hoursOfAMonth));
+        });
+
+    </script>
+</body>
+</html>
